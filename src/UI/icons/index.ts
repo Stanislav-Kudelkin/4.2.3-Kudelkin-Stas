@@ -1,0 +1,8 @@
+export { ReactComponent as CartIconGreen } from './Icon.svg'
+export { ReactComponent as CartIconWhite } from './Icon-header.svg'
+export { ReactComponent as LoaderIcon } from './loader.svg'
+export { ReactComponent as ActiveMinusIcon } from './active-minus-button.svg'
+export { ReactComponent as ActivePlusIcon } from './active-plus-button.svg'
+export { ReactComponent as InactiveMinusIcon } from './inactive-minus-button.svg'
+export { ReactComponent as InactivePlusIcon } from './inactive-plus-button.svg'
+export { ReactComponent as CartEmptyIcon } from './cart_empty.svg'

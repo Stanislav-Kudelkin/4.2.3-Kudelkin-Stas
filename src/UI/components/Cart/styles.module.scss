@@ -1,0 +1,18 @@
+.cart {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-height: 550px;
+  box-sizing: border-box;
+  max-width: 444px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 2;
+  top: 4.5rem;
+  right: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}

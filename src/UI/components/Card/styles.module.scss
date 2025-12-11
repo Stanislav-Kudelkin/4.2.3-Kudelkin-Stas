@@ -1,0 +1,17 @@
+.card {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 302px;
+  height: 414px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  margin: 1rem;
+  padding: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    cursor: pointer;
+  }
+}
