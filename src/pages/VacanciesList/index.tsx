@@ -15,6 +15,8 @@ import {
   selectSkills,
   removeSkill,
   addSkill,
+  enableMockData,
+  selectUseMockData,
 } from '@/store/vanciesSlise'
 import { Header, VacancyCard, Filters } from '@/components'
 import { Button, Pagination } from '@mantine/core'
@@ -34,13 +36,14 @@ export const VacanciesList = () => {
   const searchFiled = useAppSelector(selectSearchFiled)
   const area = useAppSelector(selectArea)
   const skills = useAppSelector(selectSkills)
+  const useMockData = useAppSelector(selectUseMockData)
 
   const [localSearch, setLocalSearch] = useState(searchFiled)
   const [localCity, setLocalCity] = useState(area)
 
   useEffect(() => {
     dispatch(fetchVacancies())
-  }, [dispatch])
+  }, [dispatch, useMockData])
 
   useEffect(() => {
     setLocalSearch(searchFiled)
@@ -82,13 +85,16 @@ export const VacanciesList = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  if (error) {
+  if (error && !useMockData) {
     return (
       <div className={style.error}>
-        <p>
-          Сервис временно недоступен. <br /> {error}
-        </p>
-        <Button onClick={() => dispatch(fetchVacancies())}>
+        <p>{error}</p>
+        <Button
+          onClick={() => {
+            dispatch(enableMockData())
+            dispatch(fetchVacancies())
+          }}
+        >
           Попробовать снова
         </Button>
       </div>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Vacancy } from '@/modules'
+import { VACANCIES } from '@/modules/data/vacancies'
 
 interface VacanciesResponse {
   items: Vacancy[]
@@ -14,15 +15,14 @@ interface VacanciesState {
   items: Vacancy[]
   loading: boolean
   error: string | null
-
   page: number
   perPage: number
   totalFound: number
   totalPages: number
-
   searchFiled: string
   area: number | null
   skills: string[]
+  useMockData: boolean
 }
 
 const initialState: VacanciesState = {
@@ -36,6 +36,7 @@ const initialState: VacanciesState = {
   searchFiled: '',
   area: 0,
   skills: ['TypeScript', 'React', 'Redux'],
+  useMockData: false,
 }
 
 export const fetchVacancies = createAsyncThunk(
@@ -43,44 +44,50 @@ export const fetchVacancies = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const state = getState() as { vacancies: VacanciesState }
-      const { page, perPage, searchFiled, area, skills } = state.vacancies
+      const { page, perPage, searchFiled, area, skills, useMockData } =
+        state.vacancies
+
+      if (useMockData) {
+        console.log('Использую моковые данные')
+        const start = page * perPage
+        const end = start + perPage
+        const paginatedItems = VACANCIES.items.slice(start, end)
+
+        return {
+          items: paginatedItems,
+          found: VACANCIES.found,
+          pages: Math.ceil(VACANCIES.items.length / perPage),
+          page: page,
+          per_page: perPage,
+        }
+      }
 
       const params = new URLSearchParams()
-
       params.append('per_page', perPage.toString())
       params.append('page', page.toString())
       params.append('professional_role', '96')
 
-      if (searchFiled.trim()) {
-        params.append('text', searchFiled)
-      }
+      if (searchFiled.trim()) params.append('text', searchFiled)
+      if (area && area !== 0) params.append('area', area.toString())
+      if (skills.length > 0) params.append('skill_set', skills.join(','))
 
-      if (area && area !== 0) {
-        params.append('area', area.toString())
-      }
-
-      if (skills.length > 0) {
-        params.append('skill_set', skills.join(','))
-      }
-
-      const url = `https://api.hh.ru/vacancies?${params.toString()}`
-
-      const response = await fetch(url, {
-        headers: {
-          'User-Agent': 'VacancyApp',
-          Authorization:
-            'Bearer APPLITQ8DL67C27PCNOC1292D7P9L4JPOQV2D1EE3GB3BSIPC40E2KT3AK57UNHE',
+      const response = await fetch(
+        `https://api.hh.ru/vacancies?${params.toString()}`,
+        {
+          headers: { 'User-Agent': 'VacancyApp' },
         },
-      })
+      )
+
+      if (response.status === 403) {
+        return rejectWithValue('Сервис временно недоступен (ошибка 403)')
+      }
 
       if (!response.ok) {
-        throw new Error(`Ошибка загрузки: ${response.status}`)
+        throw new Error(`Ошибка: ${response.status}`)
       }
 
-      const data = await response.json()
-      return data
+      return await response.json()
     } catch (e) {
-      console.error(e)
       return rejectWithValue(e instanceof Error ? e.message : 'Ошибка загрузки')
     }
   },
@@ -107,6 +114,11 @@ const vacanciesSlice = createSlice({
     removeSkill: (state, action: PayloadAction<string>) => {
       state.skills = state.skills.filter((skill) => skill !== action.payload)
     },
+    enableMockData: (state) => {
+      state.useMockData = true
+      state.error = null
+      state.page = 0
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -130,8 +142,14 @@ const vacanciesSlice = createSlice({
   },
 })
 
-export const { setPage, setSearchFiled, setArea, addSkill, removeSkill } =
-  vacanciesSlice.actions
+export const {
+  setPage,
+  setSearchFiled,
+  setArea,
+  addSkill,
+  removeSkill,
+  enableMockData,
+} = vacanciesSlice.actions
 
 export const selectVacancies = (state: { vacancies: VacanciesState }) =>
   state.vacancies.items
@@ -149,5 +167,7 @@ export const selectArea = (state: { vacancies: VacanciesState }) =>
   state.vacancies.area
 export const selectSkills = (state: { vacancies: VacanciesState }) =>
   state.vacancies.skills
+export const selectUseMockData = (state: { vacancies: VacanciesState }) =>
+  state.vacancies.useMockData
 
 export default vacanciesSlice.reducer
