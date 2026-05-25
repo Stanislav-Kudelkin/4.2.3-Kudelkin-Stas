@@ -1,0 +1,15 @@
+.searchBox {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  .button {
+    height: 42px;
+    width: 93px;
+  }
+  input {
+    height: 42px;
+    width: 403px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

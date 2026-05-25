@@ -1,29 +1,89 @@
 .header {
+  height: 60px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   z-index: 1;
   position: sticky;
   top: 0;
   background-color: #ffffff;
   padding: 0.5rem 1rem;
-  border-bottom: solid 2px rgba(84, 180, 106, 0.3);
-  .logo {
-    margin: 0;
-    padding-left: 0.6rem;
-    font-size: 22px;
-    font-weight: 600;
-    display: inline-block;
-    border: solid 2px #f3f5fa;
-    border-radius: 30px;
-    background-color: #f7f7f7;
-    .part {
-      font-weight: 400;
-      border: solid 2px #54b46a;
-      border-radius: 20px;
-      background-color: #54b46a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  .logos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .logo {
+      box-sizing: border-box;
+      margin: 0;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      padding-top: 1px;
+      font-weight: 700;
+      border-radius: 50%;
+      background-color: #db0c0c;
       color: #ffffff;
-      padding: 0.15rem 0.6rem;
+    }
+    .part {
+      font-weight: 600;
+      font-size: 16px;
+      margin-left: 1rem;
+      color: #000000;
+    }
+  }
+  .insert {
+    margin-left: 27rem;
+    display: flex;
+    align-items: center;
+    .title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-left: 8px;
+        margin-bottom: 2px;
+        background: #4263eb;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+    }
+    .about {
+      margin-left: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0f0f1080;
+      transition: color 0.2s;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        stroke: black;
+        stroke-width: 1.5;
+        transition: stroke 0.2s;
+
+        * {
+          stroke: inherit;
+          stroke-width: inherit;
+        }
+      }
+
+      &:active {
+        color: #7189e8;
+
+        svg {
+          stroke: #7189e8;
+        }
+      }
     }
   }
 }

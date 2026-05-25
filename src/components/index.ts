@@ -1,4 +1,3 @@
-export * from './CardProducts'
-export * from './Counter'
+export * from './CardVacancies'
 export * from './Header'
-export * from './CartProducts'
+export * from './Filters'

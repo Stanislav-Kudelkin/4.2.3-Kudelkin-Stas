@@ -1,21 +1,50 @@
-.image {
-  display: flex;
-  width: 280px;
-  height: 280px;
-  margin: 0 auto;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
+.skeletonCard {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
 }
 
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+.skeletonTitle {
+  height: 24px;
+  width: 40%;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonSalary {
+  height: 20px;
+  width: 50%;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonCompany {
+  height: 20px;
+  width: 40%;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonInfo {
+  height: 20px;
+  width: 10%;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonLocation {
+  height: 20px;
+  width: 20%;
+  background: #e9ecef;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
 }

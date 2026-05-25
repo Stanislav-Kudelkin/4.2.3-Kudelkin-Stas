@@ -1,10 +1,14 @@
+import { MantineProvider } from '@mantine/core'
+import '@mantine/core/styles.css'
 import './App.scss'
-import { ProductsList } from '@/pages'
+import { VacanciesList } from '@/pages'
 
 function App() {
   return (
     <div>
-      <ProductsList />
+      <MantineProvider>
+        <VacanciesList />
+      </MantineProvider>
     </div>
   )
 }

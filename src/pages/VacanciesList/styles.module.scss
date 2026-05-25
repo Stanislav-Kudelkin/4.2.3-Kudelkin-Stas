@@ -1,0 +1,77 @@
+.container {
+  margin: 0 13.3rem;
+}
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+
+  &:first-child {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 1px;
+      background: rgba(15, 15, 16, 0.1);
+      pointer-events: none;
+    }
+  }
+}
+
+.titleBox {
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .addition {
+    margin: 0;
+    font-size: 20px;
+    color: #0f0f1080;
+  }
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.vacanciesList {
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.error,
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #868e96;
+}
+
+.error {
+  color: #e03131;
+}

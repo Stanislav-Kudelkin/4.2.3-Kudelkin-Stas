@@ -1,0 +1,45 @@
+.filters {
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .skillsSection {
+    .skillsLabel {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #495057;
+    }
+    .addSkill {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      input {
+        width: 227px;
+        height: 30px;
+      }
+      button {
+        width: 34px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 7px;
+        font-size: 40px;
+        font-weight: 200;
+        background-color: #228be6;
+      }
+    }
+    .skillsList {
+      flex-wrap: wrap;
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+  }
+}

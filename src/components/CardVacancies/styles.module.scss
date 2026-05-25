@@ -1,0 +1,73 @@
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #364fc7;
+  line-height: 1.4;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  .salary {
+    font-size: 16px;
+    font-weight: 400;
+    color: #0f0f10;
+  }
+  .experience {
+    font-size: 14px;
+    font-weight: 400;
+    color: #0f0f1080;
+  }
+}
+
+.company {
+  font-size: 14px;
+  font-weight: 400;
+  color: #0f0f1080;
+  margin-bottom: 4px;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 400;
+  color: #0f0f10;
+  margin-bottom: 16px;
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  .view {
+    background-color: #0f0f10;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .reply {
+    background-color: #0f0f101a;
+    color: #0f0f10;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.badgeRemotely {
+  color: #ffffff;
+  background-color: #364fc7;
+}
+
+.badgeHybrid {
+  color: #ffffff;
+  background-color: #0f0f10;
+}
+
+.badgeOffice {
+  color: #0f0f1080;
+  background-color: #0f0f101a;
+}
